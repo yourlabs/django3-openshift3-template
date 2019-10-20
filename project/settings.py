@@ -82,10 +82,15 @@ WSGI_APPLICATION = 'wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-from . import database
-
 DATABASES = {
-    'default': database.config()
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('POSTGRESQL_SERVICE_HOST'),
+        'PORT': os.getenv('POSTGRESQL_SERVICE_PORT'),
+    }
 }
 
 
